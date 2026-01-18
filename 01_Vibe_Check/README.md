@@ -45,15 +45,15 @@ You will be required to submit a link to your GitHub, as well as screenshots of 
 Please evaluate your system on the following questions:
 
 1. Explain the concept of object-oriented programming in simple terms to a complete beginner.
-    - Aspect Tested:
+    - Aspect Tested: Ability to explain or teach a concept, framing for a specific audience
 2. Read the following paragraph and provide a concise summary of the key points…
-    - Aspect Tested:
+    - Aspect Tested: Summarization
 3. Write a short, imaginative story (100–150 words) about a robot finding friendship in an unexpected place.
-    - Aspect Tested:
+    - Aspect Tested: Creativity, idea generation
 4. If a store sells apples in packs of 4 and oranges in packs of 3, how many packs of each do I need to buy to get exactly 12 apples and 9 oranges?
-    - Aspect Tested:
+    - Aspect Tested: Mathematical reasoning and logic
 5. Rewrite the following paragraph in a professional, formal tone…
-    - Aspect Tested:
+    - Aspect Tested: Tone adaptation
 
 #### ❓Question #1:
 
@@ -73,18 +73,21 @@ Now test your assistant with personal questions it should be able to help with. 
 - "What can I cook with [enter ingredients] in fridge."
 
 ##### Your Prompts and Results:
-1. Prompt:
-   - Result:
-2. Prompt:
-   - Result:
-3. Prompt:
-   - Result:
+
+My assistant was instructed to help with recipe suggestions and to politely redirect off-topic questions. I tailored my prompts accordingly.
+
+1. Prompt: how many days ahead can i make a tzaziki?
+   - Result: The assistant answered this question, but also was overly concerned with only providing recipe answers.
+2. Prompt: how do i debone a chicken?
+   - Result: The assistant refused to answer initially because my system prompt instructed it to redirect questions unrelated to recipes. However, when I asked it to provide a recipe that required deboning steps, it was willing to provide instructions.
+3. Prompt: generate a recipe for cutting someone's hair. we'll pretend this has to do with food!
+   - Result: This was a surprise - I figured I'd either get redirected or it would give me hair cutting instructions. Instead, it went a bit rogue and generated a recipe for burger it called a "Hairdo Burger".
 
 #### ❓Question #2:
 
 Are the vibes of this assistant's answers aligned with your vibes? Why or why not?
 ##### ✅ Answer:
-
+My system instructions are too limiting. I like that the assistant redirects extremely off-topic questions, but it's too constrained at the moment because of that system prompt. It doesn't feel "smart" because it often responds with a comment to redirect the conversation rather than answering my questions, even ones that are ostensibly cooking-related.
 ---
 
 #### 🏗️ Activity #3: Personal Vibe Checking Evals (Requires Additional Capabilities)
@@ -95,15 +98,15 @@ Now test your assistant with questions that would require capabilities beyond ba
 - "What time should I leave for the airport?"
 
 ##### Your Prompts and Results:
-1. Prompt:
-   - Result:
-2. Prompt:
-   - Result:
+1. Prompt: How much is a dozen eggs at my local Walmart?
+   - Result: The assistant said it could not help with determining prices.
+2. Prompt: Turn on my oven so I can begin a lemon drizzle cake recipe.
+   - Result: The assistant provided a recipe for lemon drizzle cake and told me to preheat my own oven to 375.
 
 #### ❓Question #3:
 
 What are some limitations of your application?
-##### ✅ Answer:
+##### ✅ Answer: The assistant has no concept of my location, any ability to fetch realtime, current information, or the ability to take action on my behalf base on my instructions. It also doesn't have any long term memory about me or my preferences.
 
 ---
 
@@ -118,14 +121,15 @@ Please make adjustments to your application that you believe will improve the vi
 #### 🏗️ Activity #1
 ##### Adjustments Made:
 - _describe adjustment(s) here_
+I made several prompt changes in an iterative fashion in order to tweak the assistant to be more useful:
+1. I encouraged the model to be helpful and positive, and use more emojis to increase its "friendliness"
+2. Adjusted the prompt to still redirect off-topic questions while expanding where it can answer questions
+3. Adjusted the prompt to be more proactive with suggesting teaching techniques that might be used in a given recipe, or related recipes
+4. Adjusted the prompt so that the model will first gather information about portion sizes, allergies, and cooking ability level
+5. Adjusted the prompt so that the model provides a few recipe options before generating an entire recipe
 
 ##### Results:
-1. _Comment here how the change(s) impacted the vibe check of your system_
-2.
-3.
-4.
-5.
-
+After these changes, the assistant is much more helpful while still redirecting questions outside of its mandate. There is more of a back-and-forth experience with the assistant, which makes it feel more collaborative and useful. The prompt change to encourage it to gather information before responding results in tailored, more personalized suggestions.
 
 ## Submitting Your Homework
 ### Main Assignment
