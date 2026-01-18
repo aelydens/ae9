@@ -4,7 +4,6 @@ from typing import List, Tuple, Callable
 from aimakerspace.openai_utils.embedding import EmbeddingModel
 import asyncio
 
-
 def cosine_similarity(vector_a: np.array, vector_b: np.array) -> float:
     """Computes the cosine similarity between two vectors."""
     dot_product = np.dot(vector_a, vector_b)
@@ -31,6 +30,26 @@ class VectorDatabase:
             (key, distance_measure(query_vector, vector))
             for key, vector in self.vectors.items()
         ]
+        return sorted(scores, key=lambda x: x[1], reverse=True)[:k]
+
+    def search_by_combined(self, query_text: str, k: int) -> List[Tuple[str, float]]:
+        # Naive approach - rather than try to rerank, let's just combine
+        print("Searching by hybrid...")
+        vector_results = self.search_by_text(query_text, k)
+        keyword_results = self.search_by_keywords(query_text, k)
+        return vector_results + keyword_results
+
+    def search_by_keywords(self, query_text: str, k: int) -> List[Tuple[str, float]]:
+        stop_words = ['the', 'and', 'of', 'a', 'an', 'in', 'on', 'with', 'as', 'by', 'for', 'from', 'into', 'through', 'during', 'including', 'until', 'up', 'down', 'out', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how']
+        keywords = [word for word in query_text.split() if word not in stop_words]
+
+        text_chunks = list(self.vectors.keys())
+
+        scores = []
+        for text_chunk in text_chunks:
+            text_chunk_keywords = [word for word in text_chunk.split() if word not in stop_words]
+            score = sum([1 for keyword in keywords if keyword in text_chunk_keywords])
+            scores.append((text_chunk, score))
         return sorted(scores, key=lambda x: x[1], reverse=True)[:k]
 
     def search_by_text(
