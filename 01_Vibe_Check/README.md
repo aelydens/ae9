@@ -13,12 +13,11 @@ You will be required to submit a link to your GitHub, as well as screenshots of 
 
 > NOTE: This will require you to make updates to your personal class repository, instructions on that process can be found [here](https://github.com/AI-Maker-Space/AIE9/tree/main/00_Docs/Prerequisites/Initial_Setup)!
 
-
 #### A Note on Vibe Checking
 
->"Vibe checking" is an informal term for cursory unstructured and non-comprehensive evaluation of LLM-powered systems. The idea is to loosely evaluate our system to cover significant and crucial functions where failure would be immediately noticeable and severe.
+> "Vibe checking" is an informal term for cursory unstructured and non-comprehensive evaluation of LLM-powered systems. The idea is to loosely evaluate our system to cover significant and crucial functions where failure would be immediately noticeable and severe.
 >
->In essence, it's a first look to ensure your system isn't experiencing catastrophic failure.
+> In essence, it's a first look to ensure your system isn't experiencing catastrophic failure.
 
 ---
 
@@ -27,20 +26,22 @@ You will be required to submit a link to your GitHub, as well as screenshots of 
 Please evaluate your system on the following questions:
 
 1. Explain the concept of object-oriented programming in simple terms to a complete beginner.
-    - Aspect Tested: Ability to explain or teach a concept, framing for a specific audience
+   - Aspect Tested: Ability to explain or teach a concept, framing for a specific audience
 2. Read the following paragraph and provide a concise summary of the key points…
-    - Aspect Tested: Summarization
+   - Aspect Tested: Summarization
 3. Write a short, imaginative story (100–150 words) about a robot finding friendship in an unexpected place.
-    - Aspect Tested: Creativity, idea generation
+   - Aspect Tested: Creativity, idea generation
 4. If a store sells apples in packs of 4 and oranges in packs of 3, how many packs of each do I need to buy to get exactly 12 apples and 9 oranges?
-    - Aspect Tested: Mathematical reasoning and logic
+   - Aspect Tested: Mathematical reasoning and logic
 5. Rewrite the following paragraph in a professional, formal tone…
-    - Aspect Tested: Tone adaptation
+   - Aspect Tested: Tone adaptation
 
 #### ❓Question #1:
 
 Do the answers appear to be correct and useful?
+
 ##### ✅ Answer: I couldn't use these specific questions because I had instructed my assistant not to answer questions that were not recipe-related. However, I used other prompts to test similar abilities:
+
 - Summarize this recipe and simplify it so I only see necessary steps.
 - How many teaspoons do I have in 4.5 tablespoons?
 - Write a recipe for eggnog in a very formal way.
@@ -75,7 +76,9 @@ My assistant was instructed to help with recipe suggestions and to politely redi
 #### ❓Question #2:
 
 Are the vibes of this assistant's answers aligned with your vibes? Why or why not?
+
 ##### ✅ Answer: My system instructions are too limiting. I like that the assistant redirects extremely off-topic questions, but it's too constrained at the moment because of that system prompt. It doesn't feel "smart" because it often responds with a comment to redirect the conversation rather than answering my questions, even ones that are ostensibly cooking-related.
+
 ---
 
 #### 🏗️ Activity #3: Personal Vibe Checking Evals (Requires Additional Capabilities)
@@ -86,6 +89,7 @@ Now test your assistant with questions that would require capabilities beyond ba
 - "What time should I leave for the airport?"
 
 ##### Your Prompts and Results:
+
 1. Prompt: How much is a dozen eggs at my local Walmart?
    - Result: The assistant said it could not help with determining prices.
 2. Prompt: Turn on my oven so I can begin a lemon drizzle cake recipe.
@@ -95,7 +99,7 @@ Now test your assistant with questions that would require capabilities beyond ba
 
 What are some limitations of your application?
 
-##### ✅ Answer: The assistant has no concept of my location, any ability to fetch realtime, current information, or the ability to take action on my behalf based on my instructions. It also doesn't have any long term memory about me or my preferences.
+##### ✅ Answer: The assistant has no concept of my location, any ability to fetch current information, or the ability to take action on my behalf based on my instructions. It also doesn't have any long term memory about me or my preferences. It also doesn't maintain any information between messages.
 
 ---
 
@@ -108,9 +112,11 @@ Please make adjustments to your application that you believe will improve the vi
 > NOTE: You may reach for improving the model, changing the prompt, or any other method.
 
 #### 🏗️ Activity #1
+
 ##### Adjustments Made:
 
 I made several prompt changes in an iterative fashion in order to tweak the assistant to be more useful:
+
 1. I encouraged the model to be helpful and positive, and use more emojis to increase its "friendliness"
 2. Adjusted the prompt to still redirect off-topic questions while expanding where it can answer questions
 3. Adjusted the prompt so the assistant is more proactive with suggesting teaching techniques that might be used in a given recipe, or related recipes
