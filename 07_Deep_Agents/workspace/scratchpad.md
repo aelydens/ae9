@@ -1,0 +1,1 @@
+This is a scratchpad for ideas and thoughts.
