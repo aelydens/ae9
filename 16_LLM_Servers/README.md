@@ -83,9 +83,7 @@ What is the difference between serverless and dedicated endpoints?
 
 #### ✅ Answer:
 
-dedicated: always on
-serverless: pay per token
-_(insert your answer here)_
+When we use a serverless endpoints, we pay based on token usage and pay for what we use. However, we may experience cold starts and less predictable latency. With dedicated endpoints, we have a resource that is "always on" and may have more predictable latency. Whether costs are higher depends on our usage profile (number of tokens, number of users, expected throughput, etc).
 
 ### ❓ Question #2:
 
@@ -93,19 +91,4 @@ Why is it important to consider token throughput and latency when choosing an LL
 
 #### ✅ Answer:
 
-_(insert your answer here)_
-
-## Activity 1: RAGAS Evaluation with Cost Analysis
-
-Use RAGAS to evaluate your open-source Fireworks AI powered RAG app against an OpenAI `gpt-4.1-mini` powered equivalent. Compare retrieval quality, answer faithfulness, and end-to-end accuracy across both providers.
-
-Additionally, instrument both pipelines with **LangSmith** to capture token usage and cost per query. Use LangSmith's tracing and cost dashboards to compare the total cost of running each provider at scale. Include your evaluation results, cost breakdown, and analysis in your Loom video.
-
-## Advanced Activity: Local Models
-
-Swap out the Fireworks AI endpoints for **locally-running open-source models** using [Ollama](https://ollama.com/) or another local inference server of your choice. Run both your embedding model and your chat model locally, and rebuild the RAG pipeline on top of them.
-
-- Compare quality and latency between the local setup and your Fireworks AI hosted endpoint.
-- Reflect: what are the trade-offs of local models vs. managed endpoints in a production setting?
-
-Include your findings and a demo in your Loom video.
+Latency is a critical part of user experience, and can frustrate users if the service is too slow. Token throughput determines how many users we can serve at one time, which is a critical consideration as our applications scales and needs to handle more concurrent visitors. Ideally, we'll have a good balance of both that meet our needs: the ability to generate long answers quickly for many user concurrently.
