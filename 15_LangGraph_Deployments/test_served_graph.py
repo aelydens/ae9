@@ -10,7 +10,7 @@ def main():
             "messages": [
                 {
                     "role": "human",
-                    "content": "How often should I deworm my cat?",
+                    "content": "How often should I feed my cat?",
                 }
             ]
         },

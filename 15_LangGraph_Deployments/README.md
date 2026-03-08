@@ -5,9 +5,9 @@
 
 ## <h1 align="center" id="heading">Session 15: Build & Serve Agentic Graphs with LangGraph</h1>
 
-| 📰 Session Sheet                                             | ⏺️ Recording                           | 🖼️ Slides                                  | 👨‍💻 Repo    | 📝 Homework                                      | 📁 Feedback                                          |
-| ------------------------------------------------------------ | -------------------------------------- | ------------------------------------------- | ------------- | ------------------------------------------------ | ---------------------------------------------------- |
-| [Agent Servers](https://github.com/AI-Maker-Space/AIE9/tree/main/00_Docs/Session_Sheets/15_Agent_Servers) |[Recording!](https://us02web.zoom.us/rec/share/lORjByDju6fv4TdE3r93dorY3aNgmSKL_Qk_cX_AMcCQ6cNfSW77unaA1LMVV60.OcI8uEnfVmRAgjSn) <br> passcode: `Dc@&pv1T`| [Session 15 Slides](https://www.canva.com/design/DAG-EJqkRaM/FR3WG_yMA5_BqbWpQlHR9g/edit?utm_content=DAG-EJqkRaM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) | You are here! | [Session 15 Assignment: Agent Servers](https://forms.gle/Vb3HNDsyVPQ1jqKX7) | [Feedback 3/3](https://forms.gle/kYmhbVUEMog16mKv8) |
+| 📰 Session Sheet                                                                                          | ⏺️ Recording                                                                                                                                               | 🖼️ Slides                                                                                                                                                                          | 👨‍💻 Repo       | 📝 Homework                                                                 | 📁 Feedback                                         |
+| --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------- | --------------------------------------------------- |
+| [Agent Servers](https://github.com/AI-Maker-Space/AIE9/tree/main/00_Docs/Session_Sheets/15_Agent_Servers) | [Recording!](https://us02web.zoom.us/rec/share/lORjByDju6fv4TdE3r93dorY3aNgmSKL_Qk_cX_AMcCQ6cNfSW77unaA1LMVV60.OcI8uEnfVmRAgjSn) <br> passcode: `Dc@&pv1T` | [Session 15 Slides](https://www.canva.com/design/DAG-EJqkRaM/FR3WG_yMA5_BqbWpQlHR9g/edit?utm_content=DAG-EJqkRaM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) | You are here! | [Session 15 Assignment: Agent Servers](https://forms.gle/Vb3HNDsyVPQ1jqKX7) | [Feedback 3/3](https://forms.gle/kYmhbVUEMog16mKv8) |
 
 ### Prerequisites
 
@@ -19,10 +19,12 @@ Before starting, ensure you have the following:
 - (Optional) **LangSmith** credentials for tracing
 
 Create a `.env` file in this directory with your API keys:
-   ```
-   OPENAI_API_KEY=your_openai_api_key_here
-   TAVILY_API_KEY=your_tavily_api_key_here
-   ```
+
+```
+OPENAI_API_KEY=your_openai_api_key_here
+TAVILY_API_KEY=your_tavily_api_key_here
+```
+
 2. Run `uv sync` to install dependencies.
 
 # Build 🏗️
@@ -51,40 +53,45 @@ Run the repository and complete the following:
 <details>
 <summary>🚧 Advanced Build 🚧 (OPTIONAL - <i>open this section for the requirements</i>)</summary>
 
->NOTE: This can be done in place of the Main Assignment
+> NOTE: This can be done in place of the Main Assignment
 
 - Create and deploy a locally hosted MCP server with FastMCP.
 - Extend your tools in `tools.py` to allow your LangGraph to consume the MCP Server.
 
 When submitting, provide:
+
 - Your Loom video link demonstrating the MCP server integration
 - The GitHub URL to your completed Advanced Build
 
 Have fun!
+
 </details>
 
 ### Questions & Activities
 
 #### Question 1:
+
 What is the key architectural difference between the `simple_agent` and `agent_with_helpfulness` graphs? Specifically, explain how the helpfulness evaluation loop works and what mechanisms are in place to prevent it from running indefinitely.
 
 ##### Answer:
 
-
+The key architectural difference between the simple_agent and the agent_with_helpfulness is that the agent_with_helpfulness has an additional helpfulness node that the agent can route to to determine the helpfulness of an answer. This routing is based on a conditional edge that can either go to a tool call or go to the helpfulness_node. The helpfulness node uses structured output to force the output to be a consistent format. The helpfulness_node has a conditional edge back to the agent that checks whether the helpfulness score was Y or N, at which point it either terminates or continues looping back to the agent. The helpfulness node keeps track of message length, so one the conversation exceeds 10 messages it ends, preventing infinite loops.
 
 #### Question 2:
+
 What is the role of `langgraph.json` in the LangGraph Deployments? Describe each of its key fields and how the platform uses this file to discover and serve your graphs.
 
 ##### Answer:
 
-
+langgraph.json defines the graphs with the path where they are defined so they can be imported properly by the Langgraph platform. It also defines the assistants, which reference a graph (via graph_id) and define a name and description for each agent. The agents are served as named endpoints.
 
 #### Activity #1:
+
 Create your own agent graph! Build a new graph in `app/graphs/` with a custom evaluation node (e.g., a vibe checker, a fact verifier, a summarizer — get creative!). Register it in `langgraph.json`, serve it with `uv run langgraph dev`
 
 ##### Answer:
 
-
+Following the pattern of the helpfulness agent, I created an agent with a "completeness evaluator". After the agent responds, the completeness_node determines if the result is complete and ready for summarization. If it it, it routes to a "bullet pointer" node, which generates a bullet point summary of the answer. If the result is not complete, it is routed back to the agent to gather more information. Like the helpfulness node, it uses a limit on the messages in order to prevent infinite loops.
 
 # Ship 🚢
 
@@ -105,18 +112,19 @@ Create your own agent graph! Build a new graph in `app/graphs/` with a custom ev
 Follow these steps to prepare and submit your homework:
 
 1. Pull the latest updates from upstream into the main branch of your AIE9 repo:
-    - _(You should have completed this process already.)_ For your initial repo setup, see [Initial_Setup](https://github.com/AI-Maker-Space/AIE9/tree/main/00_Docs/Prerequisites/Initial_Setup)
-    - To get the latest updates from AI Makerspace into your own AIE9 repo, run the following commands:
-    ```
-    git checkout main
-    git pull upstream main
-    git push origin main
-    ```
+   - _(You should have completed this process already.)_ For your initial repo setup, see [Initial_Setup](https://github.com/AI-Maker-Space/AIE9/tree/main/00_Docs/Prerequisites/Initial_Setup)
+   - To get the latest updates from AI Makerspace into your own AIE9 repo, run the following commands:
+   ```
+   git checkout main
+   git pull upstream main
+   git push origin main
+   ```
 2. **IMPORTANT:** Start Cursor from the `15_LangGraph_Platform` folder (you can also use the _File -> Open Folder_ menu option of an existing Cursor window)
 3. Answer Questions 1 - 2 using the `##### Answer:` markdown cell below them in the README
 4. Complete Activity #1 in the README
 5. Add, commit and push your modified files to your GitHub repository.
 
 When submitting your homework, provide:
+
 - Your Loom video link
 - The GitHub URL to the `15_LangGraph_Platform` folder on your assignment branch

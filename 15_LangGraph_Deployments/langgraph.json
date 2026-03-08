@@ -5,7 +5,8 @@
   "python_version": "3.13",
   "graphs": {
     "simple_agent": "app.graphs.simple_agent:graph",
-    "agent_with_helpfulness": "app.graphs.agent_with_helpfulness:graph"
+    "agent_with_helpfulness": "app.graphs.agent_with_helpfulness:graph",
+    "agent_with_bullet_pointer": "app.graphs.agent_with_bullet_pointer:graph"
   },
   "assistants": {
     "agent": {
@@ -17,6 +18,11 @@
       "graph_id": "agent_with_helpfulness",
       "name": "Agent with Helpfulness Check",
       "description": "Agent that uses tools and performs a helpfulness check with loop limit."
+    },
+    "agent_bullets": {
+      "graph_id": "agent_with_bullet_pointer",
+      "name": "Agent with Bullet Summary",
+      "description": "Agent that uses tools and generates a bullet-point summary at the end."
     }
   }
 }
