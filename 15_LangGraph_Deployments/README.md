@@ -75,7 +75,7 @@ What is the key architectural difference between the `simple_agent` and `agent_w
 
 ##### Answer:
 
-The key architectural difference between the simple_agent and the agent_with_helpfulness is that the agent_with_helpfulness has an additional helpfulness node that the agent can route to to determine the helpfulness of an answer. This routing is based on a conditional edge that can either go to a tool call or go to the helpfulness_node. The helpfulness node uses structured output to force the output to be a consistent format. The helpfulness_node has a conditional edge back to the agent that checks whether the helpfulness score was Y or N, at which point it either terminates or continues looping back to the agent. The helpfulness node keeps track of message length, so one the conversation exceeds 10 messages it ends, preventing infinite loops.
+The key architectural difference between the simple_agent and the agent_with_helpfulness is that the agent_with_helpfulness has an additional helpfulness node that the agent can route to in order to determine the helpfulness of an answer. This routing is based on a conditional edge that can either go to a tool call or go to the helpfulness_node. The helpfulness node uses structured output to force the output to be a consistent format. The helpfulness_node has a conditional edge back to the agent that checks whether the helpfulness score was Y or N, at which point it either terminates or continues looping back to the agent. The helpfulness node keeps track of message length, so once the conversation exceeds 10 messages it ends, preventing infinite loops.
 
 #### Question 2:
 
@@ -91,7 +91,7 @@ Create your own agent graph! Build a new graph in `app/graphs/` with a custom ev
 
 ##### Answer:
 
-Following the pattern of the helpfulness agent, I created an agent with a "completeness evaluator". After the agent responds, the completeness_node determines if the result is complete and ready for summarization. If it it, it routes to a "bullet pointer" node, which generates a bullet point summary of the answer. If the result is not complete, it is routed back to the agent to gather more information. Like the helpfulness node, it uses a limit on the messages in order to prevent infinite loops.
+Following the pattern of the helpfulness agent, I created an agent with a "completeness evaluator". After the agent responds, the completeness_node determines if the result is complete and ready for summarization. If it is, it routes to a "bullet pointer" node, which generates a bullet point summary of the answer. If the result is not complete, it is routed back to the agent to gather more information. Like the helpfulness node, it uses a limit on the messages in order to prevent infinite loops.
 
 # Ship 🚢
 
